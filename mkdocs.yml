@@ -45,34 +45,20 @@ repo_name: RXY3.github.io # 右上角的名字
 # [Navigtion]
 nav: 
   - 主页: index.md
-  - 学习日志: page2.md 
-  - 博客:
-    - 好用/好玩网站分享: blog/Webplay.md
-    - What is Github: blog/Github.md
-    - 解决谷歌翻译用不了的问题: blog/googletranslate.md
-    - Mac/windows软件网站汇总: blog/macsoft.md
-    - win11资源分享: blog/win.md
-    - Telegram 群组、频道、机器人 - 汇总分享: blog/TG.md
-    - Python:
-        - 将Python文件.py打包成.exe可执行程序: blog/py/python.md
-        - pip: blog/py/pip.md
-    - C语言: blog/c.md
-    - kexueshangwang: blog/kexue.md
-  - 开发: 
-    - Markdown: develop/markdown.md
-    - MWeb Pro: develop/MWeb.md
-    - 大厂们的良心软件～: develop/fenxiang.md
-    - 写给所有 Mac 用户的摸鱼指北: develop/Mac.md
-  - 闲话:
-    - 原神: relax/game.md
-  - 旅行: 
-    - 家乡: trip/LH.md
-    - 重庆: trip/travel.md
-  - 关于:
-    - 个人履历: about/geren.md
-    - 网站制作: about/web.md
- 
- 
+  - 学习日志: STUDY_RECORD.md 
+  - 学习笔记:
+    - 洛谷算法学习记录: code/c.md
+    - 脉冲神经网络学习: AI_LEARNING/machine_learing.md
+    - markdown学习笔记: code/markdown.md
+    - cs61a学习笔记: code/cs61a.md
+    - missing semester学习笔记: ms/shell.md
+    - vim学习笔记: ms/vim.md
+  - 学习感悟:
+    - 学计算机学的: Thoughts/mad.md
+    - 感悟for_real: Thoughts/THINK.md
+  - 浙大cs课程:
+    - 数据结构基础: zju_class/fds.md
+    - 数字逻辑基础: zju_class/LCD.md
   
   
 copyright: Copyright &copy; 2004徐梓毓 # 左下角的版权声明
