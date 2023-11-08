@@ -53,6 +53,7 @@ nav:
     - cs61a学习笔记: code/cs61a.md
     - missing semester学习笔记: ms/shell.md
     - vim学习笔记: ms/vim.md
+    - git学习笔记: code/git.md
   - 学习感悟:
     - 学计算机学的: Thoughts/mad.md
     - 感悟for_real: Thoughts/THINK.md
