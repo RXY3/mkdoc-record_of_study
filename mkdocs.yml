@@ -103,28 +103,60 @@ extra:
  
  
 markdown_extensions:
-  - abbr
-  - pymdownx.caret
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - meta
+  - def_list
+  - attr_list
+  - md_in_html
+  - sane_lists
+  - admonition
+  - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  - md_in_html
-  - pymdownx.arithmatex:  # latex支持
-      generic: true
-  - toc:
-      permalink: true # 固定标题位置为当前位置
-  - pymdownx.highlight: # 代码块高亮
-      anchor_linenums: true
-      # linenums: true # 显示行号
-      # auto_title: true # 显示编程语言名称
-  - pymdownx.inlinehilite
+  - pymdownx.critic
+  - pymdownx.details
   - pymdownx.snippets
-  - pymdownx.superfences
-  - attr_list
+  - pymdownx.magiclink
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols  #智能符号
+  - pymdownx.superfences: # 可在列表等处嵌入块
+      # make exceptions to highlighting of code:
+      custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:mermaid2.fence_mermaid
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.superfences # 代码块高亮插件
-  - meta # 支持Markdown文件上方自定义标题标签等
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - meta # 支持markdown博客文件头的元数据，比如标题
+  - toc:
+      permalink: "#"
+      baselevel: 1
+      separator: "_"
+  - attr_list 
+  # - pymdownx.highlight: # 支持代码块语法高亮，！！！跟mermaid冲突
+  # - linenums: true # 显示行号
+
+plugins:
+  - changelog
+  - search:
+      lang: zh
+  - git-revision-date-localized:
+      type: datetime
+      timezone: Asia/Shanghai
+      locale: zh
+      enable_creation_date: true
      
 extra_javascript:
   - javascripts/extra.js
