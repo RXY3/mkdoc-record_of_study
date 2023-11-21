@@ -47,15 +47,19 @@ nav:
   - 主页: index.md
   - 学习日志: STUDY_RECORD.md 
   - 学习笔记:
-    - 洛谷算法学习记录: code/c.md
-    - 脉冲神经网络学习: AI_LEARNING/machine_learing.md
+    - 算法学习记录: code/c.md
     - markdown学习笔记: code/markdown.md
     - cs61a学习笔记: code/cs61a.md
-    - missing semester学习笔记: ms/shell.md
+    - missing semester学习笔记: 
+        - Chapter1 shell: ms/shell.md
+        - Chapter2 vim: ms/vim.md
+        - Chapter3 data_wrangling: ms/data_wrangling.md
+        - Chapter4 command_line_env: ms/command_line_env.md
     - vim学习笔记: ms/vim.md
     - git学习笔记: code/git.md
+    - cs50学习笔记: AI_LEARNING/cs50/note.md
+    - machine learning学习笔记: AI_LEARNING/machine_learing.md
   - 学习感悟:
-    - 学计算机学的: Thoughts/mad.md
     - 感悟for_real: Thoughts/THINK.md
   - 浙大cs课程:
     - 数据结构基础: zju_class/fds.md
