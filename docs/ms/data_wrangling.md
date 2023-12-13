@@ -22,7 +22,7 @@ ssh myserver journalctl
  | sed 's/.*Disconnected from //'
 ```
 涉及正则表达式（regular expression）的内容
-规则如下： 
+规则如下：
 . 除换行符之外的”任意单个字符”
 * 匹配前面字符零次或多次
 + 匹配前面字符一次或多次

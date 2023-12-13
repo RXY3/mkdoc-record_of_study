@@ -38,6 +38,9 @@ git 是一个分布式版本控制系统，可以有效、高速的处理从很�
 > git commit --amend 用于修改最后一次提交记录
 > 
 #### git branch
+移动：
+> git branch -f [branch-name] [commit-hash] 强制移动分支指针
+> git reset --hard [commit-hash] 强制移动 HEAD 指针
 > git branch [branch-name] 创建分支
 > git branch -d [branch-name] 删除分支
 > git branch -D [branch-name] 强制删除分支
@@ -51,7 +54,6 @@ git 是一个分布式版本控制系统，可以有效、高速的处理从很�
 > git branch -u [remote-name]/[remote-branch-name] 设置本地分支关联的远程分支
 > git branch -u --unset 取消本地分支关联的远程分支
 > git branch -u [remote-name]/[remote-branch-name] [local-branch-name] 设置本地分支关联的远程分支
-> git branch -u [remote-name]/[remote-branch-name] [local-branch-name] 设置本地分支关联的远程分支
 > git branch -f [branch-name] [commit-hash] 强制移动分支指针
 #### git merge
 > 合并分支
@@ -64,7 +66,6 @@ git 是一个分布式版本控制系统，可以有效、高速的处理从很�
 > git rebase --abort 取消合并
 > git rebase --continue 继续合并
 > git rebase -i [commit-hash] 交互式合并
-> 
 #### git head
 > HEAD 是一个指向你正在工作中的本地分支的指针（译注：它也是一个指向你上一次提交所在分支的指针）。  
 > HEAD 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 HEAD 的指向开始的。  
@@ -87,6 +88,8 @@ git 是一个分布式版本控制系统，可以有效、高速的处理从很�
 > 直接拿取多个节点的复制，按照顺序放置于HEAD下方
 
 #### git rebase -i(interactive)
+> git rebase [commit-hash] 用于将指定的提交记录移动到当前分支的最后面
+> git rebase [commit-hash] [branch-name] 用于将指定的提交记录移动到指定分支的最后面(com)
 > git rebase -i [commit-hash]
 > 同样的可以进行多重节点操作，即可以进行多个节点的合并（删除），也可以进行多个节点的拿取，并按照自己需要的顺序进行排列
 #### 本地栈式提交
@@ -96,19 +99,122 @@ git 是一个分布式版本控制系统，可以有效、高速的处理从很�
 > git checkout [branch-name] 用于切换到指定的分支
 > git checkout [branch-name] [相对位移] 用于切换到指定的创建分支
 > git checkout -b [branch-name] 用于创建并切换到指定的分支
-> git checkout -b [branch-name] [commit-hash] 用于创建并切换到指定的分支
+> git checkout -b [branch-name] [commit-hash] 用于创建并切换到指定的分支并指定提交记录
 > git checkout -b [branch-name] [remote-name]/[remote-branch-name] 用于创建并切换到指定的分支
 > git checkout -b [branch-name] [remote-name]/[remote-branch-name] 用于创建并切换到指定的分支
 #### git Tag
-
-
-
+> git tag 用于创建标签
 > git tag [tag-name] [commit-hash]
 
 #### git describe
 Git Describe 能帮你在提交历史中移动了多次以后找到方向；当你用 git bisect（一个查找产生 Bug 的提交记录的指令）找到某个提交记录时，或者是当你坐在你那刚刚度假回来的同事的电脑前时， 可能会用到这个命令。
 > git describe [commit-hash] 用于查看指定提交记录的描述
 > git describe [commit-hash] --tags 用于查看指定提交记录的描述
+
+
+### 远程git操作
 #### git clone
+> git clone [remote-url] 用于克隆远程仓库
+> git clone [remote-url] [local-dir] 用于克隆远程仓库到指定目录
+> git clone [remote-url] -b [branch-name] 用于克隆远程仓库的指定分支
+#### git fetch
+> git fetch [remote-name] 用于从远程仓库中获取数据
+> git fetch [remote-name] [branch-name] 用于从远程仓库中获取指定分支的数据
+> git fetch [remote-name] [branch-name] [local-branch-name] 用于从远程仓库中获取指定分支的数据并存储到本地分支  
+请注意，git fetch 命令只是将远程仓库中的数据拉取到本地仓库，并不会自动合并到当前分支。在拉取完远程仓库的数据之后，你需要手动将远程分支合并到本地分支中。  
+相当于知识一个下载的操作 
+#### o/main
+什么是 o/main？
+> o/main 是一个特殊的本地分支，它代表了远程仓库的主分支。
+> git remote show [remote-name] 用于查看远程仓库的详细信息
+> git remote show [remote-name] -n 用于查看远程仓库的详细信息
+
+#### git pull
+git pull是git fetch和git merge的组合
+> git pull [remote-name] [branch-name] 用于从远程仓库中获取指定分支的数据并合并到当前分支
+
+#### 模拟团队协作
+
+#### git push
+git push 用于将本地分支的数据推送到远程仓库
+origin：远程仓库的默认名称
+> git push [remote-name] 用于将本地分支的数据推送到远程仓库
+> git push [remote-name] [branch-name] 用于将本地分支的数据推送到远程仓库
+> git push [remote-name] [local-branch-name]:[remote-branch-name] 用于将本地分支的数据推送到远程仓库的指定分支
+> git push -u [remote-name] [local-branch-name] 用于将本地分支的数据推送到远程仓库的指定分支，并将本地分支与远程分支关联起来
+git push的失效：
+当你在本地创建了一个新的分支并且推送到远程仓库之后，你会发现 git push 命令失效了。这是因为 git push 命令只会将本地分支推送到远程仓库中存在的分支。如果你想要将本地分支推送到远程仓库中不存在的分支，你需要使用 git push -u 命令。
+
+#### git pull --rebase
+> git pull --rebase [remote-name] [branch-name] 用于从远程仓库中获取指定分支的数据并合并到当前分支
+> git pull --rebase 用于从远程仓库中获取数据并合并到当前分支
+具体图像示例：
+
+
+
+#### 远程服务器拒绝!(Remote Rejected)
+如果你是在一个大的合作团队中工作, 很可能是main被锁定了, 需要一些Pull Request流程来合并修改。如果你直接提交(commit)到本地main, 然后试图推送(push)修改, 你将会收到这样类似的信息:
+
+> ! [远程服务器拒绝] main -> main (TF402455: 不允许推送(push)这个分支; 你必须使用pull request来更新这个分支.)
+原因：
+远程服务器拒绝直接推送(push)提交到main, 因为策略配置要求 pull requests 来提交更新.
+
+你应该按照流程,新建一个分支, 推送(push)这个分支并申请pull request,但是你忘记并直接提交给了main.现在你卡住并且无法推送你的更新.  
+
+解决方案：
+1. 你可以使用 git pull --rebase 命令来更新你的本地main分支, 但是这样会导致你的提交历史变得混乱, 因为你的提交历史将会被重写.
+2. 你可以使用 git pull 命令来更新你的本地main分支, 这样会保留你的提交历史, 但是会产生一个合并提交, 这样会导致你的提交历史变得混乱.
+3. 你可以使用 git reset --hard 命令来重置你的本地main分支, 这样会丢失你的提交历史, 但是你可以重新提交你的修改, 这样会导致你的提交历史变得混乱.
+4. 新建一个分支feature, 推送到远程服务器. 然后reset你的main分支和远程服务器保持一致, 否则下次你pull并且他人的提交和你冲突的时候就会有问题.
+
+
+#### git push 的参数
+> git push origin main
+
+把这个命令翻译过来就是：
+
+切到本地仓库中的“main”分支，获取所有的提交，再到远程仓库“origin”中找到“main”分支，将远程仓库中没有的提交记录都添加上去，搞定之后告诉我。
+
+> git push origin main:main
+
+把这个命令翻译过来就是：
+
+切到本地仓库中的“main”分支，获取所有的提交，再到远程仓库“origin”中找到“main”分支，将本地仓库中的提交记录都添加上去，搞定之后告诉我。
+
+<place> 参数详解
+git push origin <source>:<destination>
+source: 本地分支
+destination: 远程分支
+如果你想要将本地分支推送到远程仓库中不存在的分支，你需要使用 git push -u 命令。
+
+#### git fetch 的参数
+git fetch origin foo
+
+把这个命令翻译过来就是：
+
+到远程仓库“origin”中找到“foo”分支，获取所有的提交，搞定之后告诉我。
+
+git fetch origin foo:bar
+
+把这个命令翻译过来就是：
+
+到远程仓库“origin”中找到“foo”分支，获取所有的提交，再到本地仓库中找到“bar”分支，将远程仓库中没有的提交记录都添加上去，搞定之后告诉我。
+
+如果push 空分支，会删除远程分支
+
+#### git pull 的参数
+
+git pull origin foo 相当于：
+
+git fetch origin foo; git merge o/foo
+
+还有...
+
+git pull origin bar~1:bugFix 相当于：
+
+git fetch origin bar~1:bugFix; git merge bugFix
+
+
+
 
 
